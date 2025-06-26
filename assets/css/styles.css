@@ -1,0 +1,63 @@
+/* === css menú de navegación === */
+
+:root {
+    --color-primario: #4caf50;
+    --color-secundario: #69bd45;
+    --color-acento: #2f8247;
+    --fondo-claro: #eaf2e3;
+}
+
+body {
+    background-color: var(--fondo-claro);
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.logo-nav img {
+    border-radius: 50%;
+}
+
+.seccion-hero {
+    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.item-carrusel img {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.tarjeta-servicio {
+    transition: transform 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tarjeta-servicio:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.boton-personalizado {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+    color: white;
+}
+
+.boton-personalizado:hover {
+    background-color: var(--color-acento);
+    border-color: var(--color-acento);
+    color: white;
+}
+
+.pie-pagina {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 40px 0 20px 0;
+}
+
+.seccion-espaciada {
+    padding: 80px 0;
+}
