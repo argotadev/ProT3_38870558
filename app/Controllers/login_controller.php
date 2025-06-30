@@ -70,7 +70,9 @@ class login_controller extends BaseController
                     return redirect()->to('/panel_admin')->with('success', 'Bienvenido ' . $user['nombre']);
                 } else {
                     // usuario normal
-                    return redirect()->to('/')->with('success', 'Bienvenido ' . $user['nombre']);
+                    //return redirect()->to('/')->with('success', 'Bienvenido ' . $user['nombre']);
+                    return redirect()->to('/usuario_controller/bienvenida')->with('success', 'Bienvenido ' . $user['nombre']);
+
                 }
             } else {
                 // login fallido
@@ -106,4 +108,20 @@ class login_controller extends BaseController
     {
         return session()->get('perfil_id') == 1;
     }
+
+    public function bienvenida()
+{
+    if (!session()->get('logged_in')) {
+        return redirect()->to('/usuario_controller/login_form')->with('error', 'Debes iniciar sesión primero.');
+    }
+
+    $data['titulo'] = 'Bienvenido';
+    $data['nombre'] = session()->get('nombre');
+
+    echo view('front/head_view', $data);
+    echo view('front/navbar_view');
+    echo view('front/bienvenida_view', $data);
+    echo view('front/footer_view');
+}
+
 }

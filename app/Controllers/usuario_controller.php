@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-use App\Models\usuario_models;
+use App\Models\usuario_model;
 use CodeIgniter\Controller;
 
 class usuario_controller extends Controller
@@ -45,7 +45,7 @@ class usuario_controller extends Controller
             echo view('front/footer_view');
         } else {
             // si pasa la validación , guardar en la base de datos
-            $formModel = new usuario_models();
+            $formModel = new usuario_model();
             
             $userData = [
                 'nombre' => $this->request->getPost('nombre'),
@@ -55,7 +55,8 @@ class usuario_controller extends Controller
                 'empresa' => $this->request->getPost('empresa'),
                 'sector' => $this->request->getPost('sector'),
                 'pass' => password_hash($this->request->getPost('pass'), PASSWORD_DEFAULT),
-                'baja' => 'NO'
+                'baja' => 'NO',
+                'perfil_id' => 2 // por defecto usuario común
             ];
 
             if ($formModel->save($userData)) {
@@ -101,7 +102,7 @@ class usuario_controller extends Controller
             $recordar = $this->request->getPost('recordar');
 
             // buscar usuario en la base de datos
-            $userModel = new usuario_models();
+            $userModel = new usuario_model();
             $user = $userModel->where('email', $email)->where('baja', 'NO')->first();
 
             if ($user && password_verify($password, $user['pass'])) {

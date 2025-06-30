@@ -57,4 +57,16 @@ class Home extends BaseController
         echo view('front/servicios');
         echo view('front/footer_view'); 
     }
+
+    public function bienvenida_view()
+    {
+        $data['titulo']='Bienvenido';
+        echo view('front/head_view', $data);
+        echo view('front/navbar_view');
+        echo view('front/bienvenida_view', $data);
+        echo view('front/footer_view');
+
+    }
+
+
 }

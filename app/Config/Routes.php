@@ -26,7 +26,6 @@ $routes->group('usuario_controller', function($routes) {
     $routes->post('send_password_reset', 'usuario_controller::send_password_reset');
 });
 
-
 $routes->get('/index', 'Home::index');
 $routes->get('/quienes_somos', 'Home::quienes_somos');
 $routes->get('/acercade', 'Home::acercade');
