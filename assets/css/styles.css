@@ -24,7 +24,7 @@ body {
     text-align: center;
 }
 
-.item-carrusel img {
+.carrusel-item img {
     height: 400px;
     object-fit: cover;
     border-radius: 10px;
@@ -54,10 +54,87 @@ body {
 
 .pie-pagina {
     background-color: var(--color-primario);
-    color: white;
+    color: white; 
     padding: 40px 0 20px 0;
 }
 
 .seccion-espaciada {
-    padding: 80px 0;
+    padding: 100px 0;
+}
+
+/* ============================================ */
+
+.welcome-section {
+    background-color: #f1f9f1;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.welcome-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+.status-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #c8e6c9;
+    color: #256029;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.dashboard-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-icon {
+    font-size: 24px;
+    color: #4caf50;
+    margin-right: 10px;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card-action {
+    margin-top: 10px;
+    display: inline-block;
+    color: #388e3c;
+    text-decoration: none;
+}
+
+.card-action:hover {
+    text-decoration: underline;
+}
+
+.btn-logout {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.btn-outline {
+    border: 1px solid #4caf50;
+    color: #4caf50;
+    background-color: white;
+    padding: 10px 16px;
+    border-radius: 4px;
 }

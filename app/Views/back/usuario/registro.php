@@ -27,7 +27,7 @@
                         <?php endif; ?>
 
                         <!-- formulario con acción -->
-                        <form action="<?= base_url('usuario_controller/FormValidation') ?>" method="post" class="row g-3">
+                        <form action="<?= base_url('FormValidation') ?>" method="post" class="row g-3">
                             <?= csrf_field() ?>
 
                             <div class="col-md-6">

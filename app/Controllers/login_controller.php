@@ -1,127 +1,91 @@
 <?php
 namespace App\Controllers;
-use App\Models\usuario_models;
+use App\Models\usuario_model;
 use CodeIgniter\Controller;
 
 class login_controller extends BaseController
+
 {
-    public function __construct()
+    public function index()
     {
         helper(['form', 'url']);
-    }
-
-    public function login_form()
-    {
-        $data['titulo'] = 'Iniciar Sesión';
-        echo view('front/head_view', $data);
+    
+        $dato['titulo'] = 'login';
+        echo view('front/head_view', $dato);
         echo view('front/navbar_view');
         echo view('back/usuario/login');
         echo view('front/footer_view');
     }
 
-    public function login()
+    public function auth()
     {
-        // reglas de validación para login
-        $rules = [
-            'email' => 'required|valid_email',
-            'pass' => 'required|min_length[6]'
-        ];
+        $session = session();
+        $model = new usuario_model();
 
-        if (!$this->validate($rules)) {
-            // por errores de validación
-            $data['titulo'] = 'Iniciar Sesión';
-            $data['validation'] = $this->validator;
-            
-            echo view('front/head_view', $data);
-            echo view('front/navbar_view');
-            echo view('back/usuario/login', $data);
-            echo view('front/footer_view');
-        } else {
-            // bbtener datos del formulario
-            $email = $this->request->getPost('email');
-            $password = $this->request->getPost('pass');
-            $recordar = $this->request->getPost('recordar');
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('pass');
 
-            // buscar usuario en la base de datos
-            $userModel = new usuario_models();
-            $user = $userModel->where('email', $email)->where('baja', 'NO')->first();
+        $data = $model->where('email', $email)->first();
+        if ($data) {
+           $pass = $data['pass'];
+            $ba = $data['baja'];
+            if ($ba == 'SI') {
+                $session->setFlashdata('msg', 'Usuario dado de baja');
+                return redirect()->to('/login_controller');
+            }
+            $verify_pass = password_verify($password, $pass);
+                if ($verify_pass) {
+                    $ses_data = [
+                        'id_usuario' => $data['id_usuario'],
+                        'nombre' => $data['nombre'],
+                        'apellido' => $data['apellido'],
+                        'email' => $data['email'],
+                        'perfil_id' => $data['perfil_id'],
+                        'logged_in' => TRUE
+                    ];
+                    // se cumple con la verificacion, inicio de sesión
+                    $session->set($ses_data);
 
-            if ($user && password_verify($password, $user['pass'])) {
-                // login superado
-                $sessionData = [
-                    'id_usuario' => $user['id_usuario'],
-                    'nombre' => $user['nombre'],
-                    'apellido' => $user['apellido'],
-                    'email' => $user['email'],
-                    'perfil_id' => $user['perfil_id'],
-                    'logged_in' => true
-                ];
+                    session()->setFlashdata('msg', 'Bienvenido ' . $data['nombre'] . ' ' . $data['apellido']);
+                    return redirect()->to('/panel'); //¿que carajos va panel?
 
-                session()->set($sessionData);
-
-                // manejo para "recordar sesión"
-                if ($recordar) {
-                    // ¿uso de cookies?
-                }
-
-                // redirigir según el perfil del usuario
-                if ($user['perfil_id'] == 1) {
-                    // admin
-                    return redirect()->to('/panel_admin')->with('success', 'Bienvenido ' . $user['nombre']);
                 } else {
-                    // usuario normal
-                    //return redirect()->to('/')->with('success', 'Bienvenido ' . $user['nombre']);
-                    return redirect()->to('/usuario_controller/bienvenida')->with('success', 'Bienvenido ' . $user['nombre']);
-
+                    $session->setFlashdata('msg', 'Contraseña incorrecta');
+                    return redirect()->to('/login_controller');
                 }
-            } else {
-                // login fallido
-                return redirect()->to('/usuario_controller/login_form')->with('error', 'Email o contraseña incorrectos');
+            }else {
+                $session->setFlashdata('msg', 'Email no registrado, usuario incorrecto');
+                return redirect()->to('/login_controller');
             }
         }
-    }
-
     public function logout()
     {
-        // cerrar sesión
-        session()->destroy();
-        return redirect()->to('/')->with('success', 'Has cerrado sesión exitosamente');
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/');
     }
-
-    public function forgot_password()
-    {
-        $data['titulo'] = 'Recuperar Contraseña';
-        echo view('front/head_view', $data);
-        echo view('front/navbar_view');
-        echo view('back/usuario/forgot_password');
-        echo view('front/footer_view');
-    }
-
-    // verificar si el usuario está logueado
-    private function isLoggedIn()
-    {
-        return session()->get('logged_in') === true;
-    }
-
-    // verificar si el usuario es admin
-    private function isAdmin()
-    {
-        return session()->get('perfil_id') == 1;
-    }
-
-    public function bienvenida()
-{
-    if (!session()->get('logged_in')) {
-        return redirect()->to('/usuario_controller/login_form')->with('error', 'Debes iniciar sesión primero.');
-    }
-
-    $data['titulo'] = 'Bienvenido';
-    $data['nombre'] = session()->get('nombre');
-
-    echo view('front/head_view', $data);
-    echo view('front/navbar_view');
-    echo view('front/bienvenida_view', $data);
-    echo view('front/footer_view');
 }
 
-}
+
+
+//     public function forgot_password()
+//     {
+//         $data['titulo'] = 'Recuperar Contraseña';
+//         echo view('front/head_view', $data);
+//         echo view('front/navbar_view');
+//         echo view('back/usuario/forgot_password');
+//         echo view('front/footer_view');
+//     }
+
+//     // verificar si el usuario está logueado
+//     private function isLoggedIn()
+//     {
+//         return session()->get('logged_in') === true;
+//     }
+
+//     // verificar si el usuario es admin
+//     private function isAdmin()
+//     {
+//         return session()->get('perfil_id') == 1;
+//     }
+// }

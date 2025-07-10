@@ -20,21 +20,21 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://www.bitrix24.es/upload/iblock/5db/1m6ibf7xyqj6h0vg4m918zq3ctpipzml.jpg" class="d-block w-100" alt="Proyecto IA">
+                        <img src="assets/img/ia.jpg" class="d-block w-100" alt="Proyecto IA">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Inteligencia Artificial Avanzada</h5>
                             <p>Desarrollo de sistemas de IA para automatización empresarial</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://tekla.io/wp-content/uploads/2022/03/Recurso1.png" class="d-block w-100 h-30" alt="Desarrollo Web">
+                        <img src="assets/img/plataformas_web_escalables.png" class="d-block w-100" alt="Desarrollo Web">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Aplicaciones Web Modernas</h5>
                             <p>Plataformas web responsivas y escalables</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://londoncg.com/hubfs/Imagenes%20MS%20%28blog%29/Noviembre-2024/En-qu%C3%A9-consisten-los-servicios-de-consultor%C3%ADa-empresarial/en-que-consisten-los-servicios-de-consultoria-empresarial.png" class="d-block w-70 h-70" alt="Consultoría">
+                        <img src="assets/img/asesoramiento.jpg" class="d-block w-100" alt="Consultoría">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Consultoría Tecnológica</h5>
                             <p>Asesoramiento especializado en transformación digital</p>
@@ -49,4 +49,4 @@
                 </button>
             </div>
         </div>
-    </section>
+        </section>

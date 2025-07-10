@@ -9,7 +9,7 @@
                     <p>TechNova tiene un enfoque orientado a soluciones innovadoras para los clientes, buscando elevar el potencial de cada negocio con modelos de IA y Machine Learning.</p>
                 </div>
                 <div class="col-lg-6">
-                    <img src="img/ia_img.jpg" class="img-fluid rounded" alt="Equipo TechNova">
+                    <img src="assets/img/Integra-a-tu-equipo-de-trabajo-con-estos-7-consejos.jpg" class="img-fluid rounded" alt="Equipo TechNova">
                 </div>
             </div>
         </div>

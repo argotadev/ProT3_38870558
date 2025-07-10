@@ -26,7 +26,7 @@
                             </div>
                         <?php endif; ?>
 
-                        <form action="<?= base_url('usuario_controller/login') ?>" method="post">
+                        <form action="<?= base_url('login') ?>" method="post"> <!-- ojo acá -->
                             <?= csrf_field() ?>
                             
                             <div class="mb-3">
